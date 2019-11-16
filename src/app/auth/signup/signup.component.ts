@@ -9,18 +9,24 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class SignupComponent implements OnInit {
 
+  maxDate;
+
   signupForm: FormGroup;
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.maxDate = new Date();
+    this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
     this.createSignupForm();
   }
 
   createSignupForm() {
     this.signupForm = this.fb.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
-      password: ['', Validators.compose([Validators.required])]
+      password: ['', Validators.compose([Validators.required])],
+      birthdate: ['', Validators.compose([Validators.required])],
+      agree: [false, Validators.compose([Validators.required])]
     })
   }
 
