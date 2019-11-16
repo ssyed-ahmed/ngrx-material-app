@@ -2,9 +2,23 @@
     <form fxLayout="column" [formGroup]="signupForm" fxLayoutAlign="center center" fxLayoutGap="10px" (ngSubmit)="signup()">
         <mat-form-field>
             <input type="email" formControlName="email" matInput placeholder="Your email" required>
+            <mat-error *ngIf="signupForm.controls['email'].touched && signupForm.controls['email'].errors && signupForm.controls['email'].errors.required">
+                Email is required
+            </mat-error>
+            <mat-error *ngIf="signupForm.controls['email'].touched && signupForm.controls['email'].errors && signupForm.controls['email'].errors.email">
+                Email is invalid
+            </mat-error>
         </mat-form-field>
         <mat-form-field>
-            <input type="password" formControlName="password" matInput placeholder="Your password" required>
+            <input type="password" #password formControlName="password" matInput placeholder="Your password" required minlength="6">
+            <mat-hint align="start">Must be at least 6 characters long.</mat-hint>
+            <mat-hint align="end">{{password.value.length}}</mat-hint>
+            <mat-error *ngIf="signupForm.controls['password'].touched && signupForm.controls['password'].errors && signupForm.controls['password'].errors.required">
+                Password is required
+            </mat-error>
+            <mat-error *ngIf="signupForm.controls['password'].touched && signupForm.controls['password'].errors && signupForm.controls['password'].errors.minlength">
+                Password must be at least 6 characters long
+            </mat-error>
         </mat-form-field>
         <button type="submit" [disabled]="signupForm.invalid" mat-raised-button color="primary">Submit</button>
     </form>
