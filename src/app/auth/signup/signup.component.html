@@ -1,10 +1,11 @@
 <section>
-    <form fxLayout="column" fxLayoutAlign="center center">
+    <form fxLayout="column" [formGroup]="signupForm" fxLayoutAlign="center center" fxLayoutGap="10px" (ngSubmit)="signup()">
         <mat-form-field>
-            <input type="email" matInput placeholder="Your email">
+            <input type="email" formControlName="email" matInput placeholder="Your email" required>
         </mat-form-field>
         <mat-form-field>
-            <input type="password" matInput placeholder="Your password">
+            <input type="password" formControlName="password" matInput placeholder="Your password" required>
         </mat-form-field>
+        <button type="submit" [disabled]="signupForm.invalid" mat-raised-button color="primary">Submit</button>
     </form>
 </section>
