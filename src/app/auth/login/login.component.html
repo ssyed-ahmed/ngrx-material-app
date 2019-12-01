@@ -1,13 +1,13 @@
 <section>
     <form fxLayout="column" [formGroup]="loginForm" fxLayoutAlign="center center" fxLayoutGap="10px" (ngSubmit)="login()">
         <mat-form-field>
-            <input type="email" matInput placeholder="Your email" formControlName="email" required>
+            <input type="email" matInput placeholder="Your email" formControlName="email">
             <mat-error *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].errors && loginForm.controls['email'].errors.required">
                 Email is required
             </mat-error>
         </mat-form-field>
         <mat-form-field>
-            <input type="password" matInput placeholder="Your password" formControlName="password" required>
+            <input type="password" matInput placeholder="Your password" formControlName="password">
             <mat-error *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].errors && loginForm.controls['password'].errors.required">
                 Password is required
             </mat-error>
